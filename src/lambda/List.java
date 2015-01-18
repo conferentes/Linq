@@ -8,8 +8,6 @@ package lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.function.ToDoubleFunction;
 import java.util.function.ToIntFunction;
@@ -25,7 +23,7 @@ public class List<T> extends ArrayList<T>
     
     public List<T> Where(Predicate<T> predicate)
     {   
-        List<T> arr = new List<T>();
+        List<T> arr = new List<>();
         arr.addAll(this.stream().filter( predicate ).collect(Collectors.<T>toList()));
         return arr;
     }
@@ -34,7 +32,7 @@ public class List<T> extends ArrayList<T>
     {
         if(this.size()==0) return null;
         java.util.List<T> list =this.stream().filter( predicate ).collect(Collectors.<T>toList());
-        if(list.size()==0) return null;
+        if(list.isEmpty()) return null;
         return list.stream().findFirst().get();
     }
     
@@ -69,7 +67,7 @@ public class List<T> extends ArrayList<T>
         
         MyQuickSort m = new MyQuickSort();
         m.sort(arr, func,Ascending);
-        List<T> list = new List<T>();
+        List<T> list = new List<>();
         list.addAll(Arrays.asList(arr));
         return list;
     }
@@ -111,7 +109,7 @@ public class List<T> extends ArrayList<T>
     
     public List<T> Take(int value)
     {
-        List<T> arr = new List<T>();
+        List<T> arr = new List<>();
         arr.addAll(this.stream().limit(value).collect(Collectors.<T>toList()));
         return arr;
     }
@@ -119,7 +117,7 @@ public class List<T> extends ArrayList<T>
     public List<T> Skip(int value)
     {
         
-        List<T> arr = new List<T>();
+        List<T> arr = new List<>();
         arr.addAll(this.stream().skip(value).collect(Collectors.<T>toList()));
         return arr;
     }
